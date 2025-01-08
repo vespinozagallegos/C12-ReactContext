@@ -101,14 +101,15 @@ export const TodosContext = createContext({
 
 
 
---------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------<----(archivo 1 DeProvider)(Commit SE AGREGA setTodos)
 FINALMENTE EL ARCHIVO QUEDA ASÍ
 
 import { createContext } from "react";
+import { useState } from "react";
 
 export const TodosContext = createContext({
 	//propiedad toDos con un [] 
-	todos: [],			<--- el array se podra extraer con otro Hook
+	todos: [],			//<--- el array se podra extraer con otro Hook
 	setTodos:() => {}
 	});
 

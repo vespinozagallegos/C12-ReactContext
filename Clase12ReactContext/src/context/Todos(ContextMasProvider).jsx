@@ -4,6 +4,7 @@ import { useState } from "react";
 export const TodosContext = createContext({
     //propiedad toDos con un [] 
     todos: [],			//<--- el array se podra extraer con otro Hook
+    setTodos:() => {}
     });
 
 //! Estructura basica de un proveedor
@@ -13,13 +14,13 @@ export const TodosContext = createContext({
 export const TodosProvider = ({children}) => {
 
 	//estado global
-	const [todos, setTodos] = useState([])
+	const [todos, setTodos] = useState([]);
 	
 	//se contruye el value
 	const value = {
 	todos,
 	setTodos
-	}
+	};
 
 
 	return (
@@ -28,5 +29,5 @@ export const TodosProvider = ({children}) => {
 	<TodosContext.Provider value={value}>
 		{children}
 	</TodosContext.Provider>
-	)	
+	);	
 };
