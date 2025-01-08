@@ -43,7 +43,7 @@ const value = {
 
 
 // QUEDANDONOS UN PROVIDER ASI
-//! Provider con Estado y construccion de value 						<----(archivo 2 DeProvider)
+//! Provider con Estado y construccion de value 						<----(archivo 1 DeProvider)(Commit Se agrega ESTADO y se contruye el VALUE)
 
 export const TodosProvider = ({children}) => {
 
