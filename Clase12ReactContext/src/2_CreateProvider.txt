@@ -67,7 +67,7 @@ export const TodosProvider = ({children}) => {
 
 
 
-//LUEGO AGREGAMOS EL VALUE CONTRUIDO								<----(COMMITs al archivo 2 DeProvider)	
+//LUEGO AGREGAMOS EL VALUE CONTRUIDO								<----(archivo 1 DeProvider)(Commit SE AGREGA EL VALUE)	
 export const TodosProvider = ({children}) => {
 
 	//estado global

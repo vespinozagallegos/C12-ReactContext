@@ -24,7 +24,8 @@ export const TodosProvider = ({children}) => {
 
 	return (
 	//las propiedades del context (todos: []) se definen en el value
-	<TodosContext.Provider value={""}>
+	//se agrega el value construido
+	<TodosContext.Provider value={value}>
 		{children}
 	</TodosContext.Provider>
 	)	
