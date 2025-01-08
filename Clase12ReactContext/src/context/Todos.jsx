@@ -7,10 +7,6 @@ export const TodosContext = createContext({
     setTodos:() => {}
     });
 
-//! Estructura basica de un proveedor
-// Recibe como argumento a otros componentes ej--> children
-// Para que puedan recibir la información definida en el context
-
 export const TodosProvider = ({children}) => {
 
 	//estado global
@@ -21,7 +17,6 @@ export const TodosProvider = ({children}) => {
 	todos,
 	setTodos
 	};
-
 
 	return (
 	//las propiedades del context (todos: []) se definen en el value
