@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+  
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  
+    background-color: beige ;
+
+    display: flex;
+    justify-content: center;
+  
+  }
