@@ -1,0 +1,153 @@
+PROVIDER --> PROVEEDOR
+Contiene la info del contexto para distribuir
+Es un Componente Funcional que recibe como props a los componentes que la necesiten (a la info)
+
+
+[EN EL MISMO ARCHIVO Todos.jsx]
+-----------aqui empieza el CreaeteContext.txt-----------------------				<----(archivo 1 CrearContext)
+import { createContext } from "react";
+
+export const TodosContext = createContext({
+	//propiedad toDos con un [] 
+	todos: [],			<--- el array se podra extraer con otro Hook
+	});
+-----------aqui termina el CreaeteContext.txt-----------------------
+//! Estructura basica de un proveedor 								<----(archivo 1 DeProvider)incluye(archivo 1 CrearContext)
+// Recibe como argumento a otros componentes ej--> children
+// Para que puedan recibir la información definida en el context
+
+export const TodosProvider = ({children}) => {
+	return (
+	//las propiedades del context (todos: []) se definen en el value
+	<TodosContext.Provider value={""}>
+		{children}
+	</TodosContext.Provider>
+	)	
+};
+
+
+
+// LUEGO AGREGAMOS UN ESTADO QUE VAMOS A PODER GESTIONAR DESDE CUALQUIER OTRO COMPONENTE
+// CON LA SIGUIENTE ESTRUCTURA
+
+const [todos, setTodos] = useState([])
+
+
+// Y SE AGREGA EL VALUE COMO CONST (que podria quedar solo en value y ubicado en el return del provider)
+// pero asi queda mas ordenado visualmente (se podria decir que se construye el valor)
+
+const value = {
+	todos,
+	setTodos
+}
+
+
+// QUEDANDONOS UN PROVIDER ASI
+//! Provider con Estado y construccion de value 						<----(archivo 2 DeProvider)
+
+export const TodosProvider = ({children}) => {
+
+	//estado global
+	const [todos, setTodos] = useState([])
+	
+	//se contruye el value
+	const value = {
+	todos,
+	setTodos
+	}
+
+
+	return (
+	//las propiedades del context (todos: []) se definen en el value
+	<TodosContext.Provider value={""}>
+		{children}
+	</TodosContext.Provider>
+	)	
+};
+
+
+
+//LUEGO AGREGAMOS EL VALUE CONTRUIDO								<----(COMMITs al archivo 2 DeProvider)	
+export const TodosProvider = ({children}) => {
+
+	//estado global
+	const [todos, setTodos] = useState([])
+	
+	//se contruye el value
+	const value = {
+	todos,
+	setTodos
+	}
+
+
+	return (
+	//las propiedades del context (todos: []) se definen en el value
+	//se agrega el value construido
+	<TodosContext.Provider value={value}>
+		{children}
+	</TodosContext.Provider>
+	)	
+};
+
+
+//para poder enviar la funcion setTodos del estado, que a su ves se incluye en el const value
+//SE DEBE agregar en el context como una funcion genérica ---setTodos:() => {}---
+//para que sustituya al contexto inicial
+export const TodosContext = createContext({
+	//propiedad toDos con un [] 
+	todos: [],			<--- el array se podra extraer con otro Hook
+	setTodos:() => {}
+	});
+
+
+
+--------------------------------------------------------------------------------------------------
+FINALMENTE EL ARCHIVO QUEDA ASÍ
+
+import { createContext } from "react";
+
+export const TodosContext = createContext({
+	//propiedad toDos con un [] 
+	todos: [],			<--- el array se podra extraer con otro Hook
+	setTodos:() => {}
+	});
+
+export const TodosProvider = ({children}) => {
+
+	//estado global
+	const [todos, setTodos] = useState([]);
+	
+	//se contruye el value
+	const value = {
+	todos,
+	setTodos
+	};
+
+
+	return (
+	//las propiedades del context (todos: []) se definen en el value
+	//se agrega el value construido
+	<TodosContext.Provider value={value}>
+		{children}
+	</TodosContext.Provider>
+	);	
+};
+--------------------------------------------------------------------------------------------------
+
+EL PROVIDER DEBE ENVOLVER A LOS COMPONENTES QUE quueremos TENGAN ACCESO
+acceso a:
+Array de todos	---->	todos
+funcion que permite modificar el array	---->	setTodos
+
+PARA ESTO en este ejemplo
+SE ENVUELVE LA APP COMPLETA EN MAIN
+para que todos los componentes tengan acceso
+
+<Reac.StrictMode>
+	<TodosProvider>
+		<App />
+	</TodosProvider>
+</React.StrictMode>
+
+ASI EL TODOS PROVIDER ESTA HABILITANDO LA INFO DEL CONTEXTO
+PARA TODOS LOS COMPONENTES DE LA APLICACIÓN
