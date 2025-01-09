@@ -1,0 +1,13 @@
+CreateContext ----> CONTEXT
+Crea el contexto
+
+ContextProvider ----> Provee el contexto envolviendo modulos
+Disponibiliza el contexto
+Toma el contexto y permite englobar a TODOS COMPONENTES (GLOBAL) o a ALGUNOS COMPONENTES (SEMI GLOBAL)
+
+UseContext ----> ejecuta el contexto en cualquiera de los modulos envueltos
+Permite CONSUMIR el Contexto
+
+Si tengo el provider envolviendo a los COMPONENTES que necesitaran del contexto
+bastará con invocar useContext + contexto dentro ----> useContext(CONTEXTO)
+para utilizar los estados/funcionalidades que este contenga
